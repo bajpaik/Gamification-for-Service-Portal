@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+
+	var c = this;
+
+	c.awardPoints = function() {	
+		$rootScope.$broadcast('sp.gamification', 'ACT0001001');
+	};
+
+	c.startGuidedTour = function() {	
+		$rootScope.$broadcast('sp.startGuidedTour', 'ACT0001002');
+	};
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>gamification-examples</id>
+        <internal>false</internal>
+        <link/>
+        <name>Gamification Examples</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-21 21:52:57</sys_created_on>
+        <sys_id>48547514db5e9b0095889eb5db961963</sys_id>
+        <sys_mod_count>87</sys_mod_count>
+        <sys_name>Gamification Examples</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sp_widget_48547514db5e9b0095889eb5db961963</sys_update_name>
+        <sys_updated_by>workhstayh</sys_updated_by>
+        <sys_updated_on>2018-08-10 10:12:20</sys_updated_on>
+        <template><![CDATA[<div>
+
+  <div class="gamehelp panel panel-default panel-body">
+    <h1 class="m-n m-b text-primary">Gamification for Service Portal</h1>
+    <p>Thank you to those that were able to attended any of our CreatorCon Sessions at Knowledge18.</p>
+    <p><b>Installation:</b><br>
+      For this application to work, you will need to embed the "Gamification Event Listener" widget inside your theme. To do so, simply include the following snippet inside the HTML of either your Header or Footer widget of the current theme.
+    </p>
+    <pre>&#x3C;widget id=&#x22;gamification-event-listener&#x22;&#x3E;&#x3C;/widget&#x3E;</pre>
+    <p>Once this has been completed, you can perform a quick test by clicking the button below. This should the trigger the "Test Activity" and add points to your profile as will be indicated in the "User Points &amp; Badges" widget.</p>
+    <button class="btn btn-primary m-b" ng-click="c.awardPoints()">
+      Award Points
+    </button>
+    <p>This is just a quick example that triggers an event from a widget, but the underlying API can be called from any server-side script within the platform (e.g. Business Rules, Scripted REST, etc).</p>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        ${Example: Feature Tour}
+      </h4>
+    </div>
+    <div class="panel-body">
+      <p>We've included the <a href="https://kamranahmed.info/driver">Driver</a> library to  demonstrate awarding points for completing a feature tour.</p>
+      <p><strong>You can test the feature tour by clicking below:</strong></p>
+      <button class="btn btn-primary m-b" ng-click="c.startGuidedTour()">
+        Start Guided Tour
+      </button>
+      <p>To simplify the installation, all the scripts have been included as <strong>Dependencies</strong> tied to the <strong>Gamification Event Listener</strong> widget.</p>
+      <p>To configure the feature tour, all you have to do is customize the <strong>GamificationTourConfig</strong> UI Script.</p>
+      <p>When implementing this, it would likely only display for a user the first time they log in. Since it's triggered via an event, this should be simple to implement but has not been included in this demonstration.</p>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">${Example: Social Q&amp;A}</h4>
+    </div>
+    <div class="panel-body">
+      <p>We've also included a quick example for integrating with Social Q&amp;A. This will reward users when a answer is marked as correct. To install, all you have to do is create the following Business Rule:</p>
+      <p><i class="fa fa-info-circle text-primary"></i> <i>Must be created in Global scope.</i></p>
+      <b>Name:</b> Gamification - Accepted Answer<br>
+      <b>Table:</b> Social Q&amp;A Answer<br>
+      <b>When:</b> Before<br>
+      <b>Update:</b> Checked<br>
+      <b>Filter Conditions:</b> Accepted is true<br>
+      <b>Script:</b><br>
+      <pre>(function executeRule(current, previous /*null when async*/) {
+
+	var api = new x_nero_gamificatio.GamificationAPI();
+	var userID = api.getUserIDFromLiveProfile(current.profile.toString());
+	api.trackRecordActivity(userID, 'ACT0001003');
+
+})(current, previous);</pre>
+    </div>
+  </div>
+
+</div>]]></template>
+    </sp_widget>
+</record_update>

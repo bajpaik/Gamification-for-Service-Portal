@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>2</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">3fab3518db5e9b0095889eb5db96192f</sp_column>
+        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-22 21:57:13</sys_created_on>
+        <sys_id>e4eebe64dbd6db0095889eb5db9619ea</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sp_instance_e4eebe64dbd6db0095889eb5db9619ea</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-22 23:30:53</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"html": {
+		"value": "<div class=\"panel panel-default panel-body\"><a href=\"http://newrocket.com\"><img style=\"width: 50%; max-width: 200px; margin: 10px 0;\" src=\"newrocket.png\" /></a>\n<p>This application has been provided for free of charge by the team at NewRocket. Please keep us in mind if you need any Service Portal design or development</p>\n<p><a href=\"http://newrocket.com\">http://newrocket.com</a></p>\n</div>",
+		"displayValue": "<div class=\"panel panel-default panel-body\"><a href=\"http://newrocket.com\"><img style=\"width: 50%; max-width: 200px; margin: 10px 0;\" src=\"newrocket.png\" /></a>\n<p>This application has been provided for free of charge by the team at NewRocket. Please keep us in mind if you need any Service Portal design or development</p>\n<p><a href=\"http://newrocket.com\">http://newrocket.com</a></p>\n</div>"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=e4eebe64dbd6db0095889eb5db9619ea"/>
+</record_update>

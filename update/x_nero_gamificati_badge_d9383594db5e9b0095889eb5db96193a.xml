@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="x_nero_gamificati_badge">
+    <x_nero_gamificati_badge action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition><![CDATA[var answer = new x_nero_gamificati.GamificationAPI().checkUserActivity('ACT0001001');]]></condition>
+        <description>Completed first activity</description>
+        <icon/>
+        <name>Rocket</name>
+        <order/>
+        <sys_class_name>x_nero_gamificati_badge</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-21 22:10:19</sys_created_on>
+        <sys_id>d9383594db5e9b0095889eb5db96193a</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Rocket</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>x_nero_gamificati_badge_d9383594db5e9b0095889eb5db96193a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-22 23:27:00</sys_updated_on>
+    </x_nero_gamificati_badge>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#ffffff</average_image_color>
+        <chunk_size_bytes>734003</chunk_size_bytes>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>icon</file_name>
+        <image_height>64</image_height>
+        <image_width>64</image_width>
+        <size_bytes>2364</size_bytes>
+        <size_compressed>2101</size_compressed>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-21 22:10:32</sys_created_on>
+        <sys_id>79587594db5e9b0095889eb5db961912</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-21 22:10:33</sys_updated_on>
+        <table_name>ZZ_YYx_nero_gamificati_badge</table_name>
+        <table_sys_id>d9383594db5e9b0095889eb5db96193a</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="icon" sys_id="79587594db5e9b0095889eb5db961912">79587594db5e9b0095889eb5db961912</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-21 22:10:32</sys_created_on>
+        <sys_id>71587594db5e9b0095889eb5db961913</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>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</data>
+        <length>2788</length>
+        <position>1</position>
+        <sys_attachment display_value="icon" sys_id="79587594db5e9b0095889eb5db961912">79587594db5e9b0095889eb5db961912</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-21 22:10:32</sys_created_on>
+        <sys_id>f1587594db5e9b0095889eb5db961913</sys_id>
+    </sys_attachment_doc>
+</record_update>

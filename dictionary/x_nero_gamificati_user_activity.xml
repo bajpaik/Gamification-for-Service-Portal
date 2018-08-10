@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="User Activities" max_length="40" name="x_nero_gamificati_user_activity" type="collection">
+        <element label="Activity" max_length="32" name="activity" reference="x_nero_gamificati_activity" type="reference"/>
+        <element label="Document ID" max_length="32" name="document_id" type="document_id"/>
+        <element label="Document Table" max_length="80" name="document_table" type="table_name"/>
+        <element label="Points" max_length="40" name="points" type="integer"/>
+        <element display="true" label="User" max_length="32" name="user" reference="sys_user" type="reference"/>
+        <index name="index">
+            <element name="activity"/>
+        </index>
+        <index name="index2">
+            <element name="document_id"/>
+        </index>
+        <index name="index3">
+            <element name="user"/>
+        </index>
+    </element>
+</database>

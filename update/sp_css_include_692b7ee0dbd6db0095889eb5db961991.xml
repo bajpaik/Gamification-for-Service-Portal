@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_css_include">
+    <sp_css_include action="INSERT_OR_UPDATE">
+        <name>GamificationDriver</name>
+        <source>local</source>
+        <sp_css display_value="GamificationDriver">803b7ee0dbd6db0095889eb5db9619fa</sp_css>
+        <sys_class_name>sp_css_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-22 21:41:18</sys_created_on>
+        <sys_id>692b7ee0dbd6db0095889eb5db961991</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GamificationDriver</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sp_css_include_692b7ee0dbd6db0095889eb5db961991</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-22 21:41:18</sys_updated_on>
+        <url/>
+    </sp_css_include>
+</record_update>

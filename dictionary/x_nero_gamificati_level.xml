@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element attributes="update_synch=true" extends="sys_metadata" label="Level" max_length="40" name="x_nero_gamificati_level" type="collection">
+        <element label="Max Points" max_length="40" name="max_points" type="integer"/>
+        <element display="true" label="Name" max_length="40" name="name" type="string"/>
+    </element>
+</database>

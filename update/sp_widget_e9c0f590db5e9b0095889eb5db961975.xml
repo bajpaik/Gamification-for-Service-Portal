@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($rootScope, $scope, spUtil) {
+	var c = this;
+
+	$rootScope.$on('sp.startGuidedTour', function(event, activity) {
+		startDriving(activity);
+	});
+
+	$rootScope.$on('sp.gamification', function(event, activity) {
+		c.data.action = "trackRecordActivity";
+		c.data.activity = activity;
+		c.server.update();
+	});
+
+	spUtil.recordWatch($scope, "x_nero_gamificati_user_activity", "user=" + $scope.user.sys_id + "^pointsISNOTEMPTY", function(name, data) {
+		if(name.data.record.points.display_value) {
+			spUtil.addInfoMessage("Congrats, you've been awarded " + name.data.record.points.display_value + " points!");
+		}
+	});
+
+	spUtil.recordWatch($scope, "x_nero_gamificati_user_badge", "user=" + $scope.user.sys_id, function(name, data) {
+		c.data.badge = name.data.record.badge.value;
+		spUtil.addInfoMessage("Congrats, you've been awarded a badge!");
+	});
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>gamification-event-listener</id>
+        <internal>false</internal>
+        <link/>
+        <name>Gamification Event Listener</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {	
+	
+	if(input && input.action == 'trackRecordActivity') {
+		new x_nero_gamificati.GamificationAPI().trackRecordActivity(gs.getUserID(), input.activity);
+	}
+		
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-21 21:37:28</sys_created_on>
+        <sys_id>e9c0f590db5e9b0095889eb5db961975</sys_id>
+        <sys_mod_count>47</sys_mod_count>
+        <sys_name>Gamification Event Listener</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sp_widget_e9c0f590db5e9b0095889eb5db961975</sys_update_name>
+        <sys_updated_by>workhstayh</sys_updated_by>
+        <sys_updated_on>2018-08-10 10:12:06</sys_updated_on>
+        <template/>
+    </sp_widget>
+</record_update>

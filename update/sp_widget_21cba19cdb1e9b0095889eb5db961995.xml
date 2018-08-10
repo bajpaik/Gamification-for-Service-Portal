@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function(spUtil, $scope) {
+  var c = this;
+	spUtil.recordWatch($scope, "x_nero_gamificati_gamer", "user=" + $scope.data.userID);
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>div.badges img {&#13;
+  max-width: 100px;&#13;
+}&#13;
+&#13;
+img.gray {&#13;
+    filter: grayscale(1);&#13;
+}&#13;
+&#13;
+.badge-container {&#13;
+  width: 100px;&#13;
+  height: 120px;&#13;
+  display: inline-block;&#13;
+}&#13;
+&#13;
+.badge-container p {&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+.badge-container img.has-badge {&#13;
+  filter: none;&#13;
+}&#13;
+&#13;
+.super {&#13;
+  font-size: 100px;&#13;
+}&#13;
+&#13;
+div.progress .progress-bar-success {&#13;
+  background-color: #0fa713;&#13;
+}&#13;
+  </css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>title,glyph,color</field_list>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>Gamification Points &amp; Badges</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+	options.title = options.title || gs.getMessage("User Points & Badges");
+	
+	data.userID = gs.getUserID();
+	data.game = getGamificationDetails();
+	data.game.nextLevel = parseInt(data.game.level.max) + 1;
+	
+	function getGamificationDetails() {
+		var api = new x_nero_gamificati.GamificationAPI();
+		return {
+			points: api.getUserScore(),
+			badges: api.getUserBadges(),
+			level: api.getLevels()
+		};
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-21 21:30:24</sys_created_on>
+        <sys_id>21cba19cdb1e9b0095889eb5db961995</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Gamification Points &amp; Badges</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sp_widget_21cba19cdb1e9b0095889eb5db961995</sys_update_name>
+        <sys_updated_by>workhstayh</sys_updated_by>
+        <sys_updated_on>2018-08-10 10:12:04</sys_updated_on>
+        <template><![CDATA[<sp-panel title="options.title">
+
+    <div class="row">
+      <div class="col-md-12">
+        <h4>
+          Points <span class="super"> {{data.game.points | number}}</span>
+        </h4> 
+        <p>Level: {{data.game.level.name}}</p>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" style="width: {{data.game.level.percentage}}%">
+          </div>
+        </div>
+        <p>Points until next level: {{data.game.nextLevel}}</p>
+      </div>
+      <div class="col-md-12">
+        <h4>Badges</h4>
+        <div class="badges">
+          <span class="badge-container"
+                ng-repeat="badge in data.game.badges">
+            <img ng-src="{{badge.image}}" 
+                 title="{{badge.description}}"
+                 ng-class="{'has-badge': {{badge.userHas}}}"
+                 class="gray" />           
+            <p class="badge-name">{{badge.name}}</p>
+          </span>
+
+        </div>
+      </div>
+    </div>
+
+</sp-panel>]]></template>
+    </sp_widget>
+</record_update>

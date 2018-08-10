@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>primary</color>
+        <css/>
+        <glyph>star</glyph>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">3fab3518db5e9b0095889eb5db96192f</sp_column>
+        <sp_widget display_value="Gamification Points &amp; Badges">21cba19cdb1e9b0095889eb5db961995</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-21 21:31:07</sys_created_on>
+        <sys_id>a85f6110db5e9b0095889eb5db961971</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>User Points &amp; Badges</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sp_instance_a85f6110db5e9b0095889eb5db961971</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-21 22:33:21</sys_updated_on>
+        <title>User Points &amp; Badges</title>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=a85f6110db5e9b0095889eb5db961971"/>
+</record_update>

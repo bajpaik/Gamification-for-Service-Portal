@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_js_include">
+    <sp_js_include action="INSERT_OR_UPDATE">
+        <display_name>GamificationGuidedTour</display_name>
+        <source>local</source>
+        <sys_class_name>sp_js_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-22 17:47:43</sys_created_on>
+        <sys_id>2af48a28db56db0095889eb5db9619bf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GamificationGuidedTour</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_ui_script/>
+        <sys_update_name>sp_js_include_2af48a28db56db0095889eb5db9619bf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-22 17:47:43</sys_updated_on>
+        <url/>
+    </sp_js_include>
+</record_update>

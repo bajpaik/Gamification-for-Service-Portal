@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_nero_gamificati.GamificationAPI</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>GamificationAPI</name>
+        <script><![CDATA[var GamificationAPI = Class.create();
+GamificationAPI.prototype = {
+    initialize: function() {
+		this.tables = {
+			gamer: 'x_nero_gamificati_gamer',
+			badge: 'x_nero_gamificati_badge',
+			userBadge: 'x_nero_gamificati_user_badge',
+			activity: 'x_nero_gamificati_activity',
+			userActivity: 'x_nero_gamificati_user_activity',
+			level: 'x_nero_gamificati_level'
+		};
+    },
+	
+	/*  Executes all active badge conditions
+	 *  - Accepts no arguments
+	 */
+	awardBadges: function() {
+		var badges = new GlideRecord(this.tables.badge);
+		badges.addActiveQuery();
+		badges.query();
+		while(badges.next()) {
+			var evaluator = new GlideScopedEvaluator();
+			evaluator.putVariable('answer', null);
+			evaluator.evaluateScript(badges,'condition', null);
+			var answer = evaluator.getVariable('answer');
+			if(answer) {
+				// create User Badge record
+				this.createUserBadge(badges.getUniqueValue());
+			}
+		}
+	},
+	
+	checkUserActivity: function(activity, user) {
+		if(!user) {
+			user = gs.getUserID();
+		}
+		var act = this.doesActivityCodeExist(activity);
+		if(!act) {
+			return false;
+		}
+		var gr = new GlideRecord(this.tables.userActivity);
+		gr.addQuery('activity', act.sysID);
+		gr.addQuery('user', user);
+		gr.query();
+		if(gr.next()) {
+			return true;
+		} else {
+			return false;
+		}		
+	} ,
+	
+	/*  Creates a User Badge record
+	 *  - Accepts records Badge ID
+	 */
+	createUserBadge: function(badgeID) {
+		// @todo check if badge already exists
+		var gr = new GlideRecord(this.tables.userBadge);
+		gr.addQuery('user', gs.getUserID());
+		gr.addQuery('badge', badgeID);
+		gr.query();
+		if(!gr.next()) {			
+			gr.newRecord();
+			gr.setValue('user', gs.getUserID());
+			gr.setValue('badge', badgeID);
+			gr.insert();
+		}
+	},
+	
+	/*  Determines if the supplied activity code exists
+	 *  - if it exists, an object with the points and sysID is returned
+	 *  - if it does not exist, false is returned
+	 */
+	doesActivityCodeExist: function(activityCode) {
+		var gr = new GlideRecord(this.tables.activity);
+		gr.addQuery('number', activityCode);
+		gr.query();
+		if(gr.next()) {
+			return {
+				points: gr.points_awarded.getDisplayValue(),
+				sysID: gr.getUniqueValue()
+			};
+		} else {
+			return false;
+		}
+	},
+	
+	/*  Returns sys_id of Activity record using the activity number
+	 */
+	getActivitySysID: function(num) {
+		var gr = new GlideRecord(this.tables.activity);
+		gr.addQuery('number', num);
+		gr.query();
+		if(gr.next()) {
+			return gr.getUniqueValue().toString();
+		} else {
+			return false;
+		}
+	},
+	
+	getLevels: function() {
+		var points = this.getUserScore();
+		var level = {};
+		var foundLevel = false;
+		var gr = new GlideRecord(this.tables.level);
+		gr.orderBy('max_points');
+		gr.query();
+		while(gr.next()) {
+			if(parseInt(points) <= parseInt(gr.max_points.toString())) {
+				level.name = gr.name.getDisplayValue();
+				level.max = gr.max_points.toString();
+				gr.next();
+				level.nextPoints = gr.max_points.toString();
+				break;
+			}
+			level.previousPoints = gr.max_points.toString();
+		}
+		var pPoints = parseInt(level.previousPoints);
+		var nPoints = parseInt(level.max);
+		if(points && pPoints && nPoints) {			
+			level.percentage = ((points - pPoints) / (nPoints - pPoints)) * 100;
+		} else {
+			level.percentage = 0;
+		}
+		return level;
+	},
+	
+	getUserBadges: function(userID) {
+		if(!userID) {
+			userID = gs.getUserID();
+		}
+		var badges = [];
+		var gr = new GlideRecord(this.tables.badge);
+		gr.addActiveQuery();
+		gr.orderBy('order');
+		gr.query();
+		while(gr.next()) {
+			var o = {};
+			o.name = gr.name.getDisplayValue();
+			o.description = gr.description.getDisplayValue();
+			o.image = gr.icon.getDisplayValue();
+			o.sysID = gr.getUniqueValue();
+			o.userHas = false;
+			badges.push(o);
+		}
+		var userBadges = new GlideRecord(this.tables.userBadge);
+		userBadges.addQuery('user', userID);
+		userBadges.query();
+		while(userBadges.next()) {
+			for(var i = 0; i < badges.length; i++) {
+				if(badges[i].sysID == userBadges.badge.sys_id.getDisplayValue()) {
+					badges[i].userHas = true;
+				}
+			}
+		}
+		return badges;
+	},
+	
+	getUserIDFromLiveProfile: function(liveProfileSysID) {
+		var gr = new GlideRecord('live_profile');
+		gr.get(liveProfileSysID);
+		return gr.document.toString();
+	},
+	
+	getUserScore: function(userID) {
+		if(!userID) {
+			userID = gs.getUserID();
+		}
+		var gr = new GlideRecord(this.tables.gamer);
+		gr.addQuery('user', userID);
+		gr.query();
+		if(gr.next()) {
+			return gr.points.toString();
+		} else {
+			gr.newRecord();
+			gr.setValue('user', gs.getUserID());
+			gr.setValue('level', 'Bottle Rocket');
+			gr.insert();
+			return '0';
+		}
+		
+	},
+	
+	logError: function(msg) {
+		gs.addErrorMessage(msg);
+	},
+	
+	/*  Creates a new User Activity record if the activity code exists
+	 *  - Runs awardBadges()
+	 */
+	trackRecordActivity: function(user, activityCode, table, recordSysID) {
+		var activityInfo = this.doesActivityCodeExist(activityCode);
+		if(activityInfo) {
+			var userAct = new GlideRecord(this.tables.userActivity);
+			userAct.newRecord();
+			userAct.setValue('activity', activityInfo.sysID);
+			userAct.setValue('user', user);
+			userAct.setValue('points', activityInfo.points);
+			if(table && recordSysID) {
+				userAct.setValue('document_table', table);
+				userAct.setValue('document_id', recordSysID);
+			}
+			userAct.insert();
+			this.updateGamerPoints(user);
+			this.awardBadges();
+		} else {
+			this.logError('Activity code does not exist.');
+		}
+	},
+	
+	updateGamerPoints: function(user) {
+		var total = 0;
+		var gr = new GlideRecord(this.tables.userActivity);
+		gr.addQuery('user', user);
+		gr.query();
+		while(gr.next()) {
+			if(!gr.points) {
+				continue;
+			}
+			total = total + parseInt(gr.points.toString());
+		}
+		
+		var level = '';
+		var lvl = new GlideRecord(this.tables.level);
+		lvl.orderBy('max_points');
+		lvl.query();
+		while(lvl.next()) {
+			if(parseInt(total) <= parseInt(lvl.max_points.toString())) {
+				level = lvl.name.getDisplayValue();
+			}
+		}
+		
+		var gamer = new GlideRecord(this.tables.gamer);
+		gamer.addQuery('user', user);
+		gamer.query();
+		if(gamer.next()) {
+			gamer.points = total;
+			gamer.level = level;
+			gamer.update();
+		}
+	},
+
+    type: 'GamificationAPI'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-21 19:09:51</sys_created_on>
+        <sys_id>134ec910db1e9b0095889eb5db9619c6</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>GamificationAPI</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sys_script_include_134ec910db1e9b0095889eb5db9619c6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-21 22:23:52</sys_updated_on>
+    </sys_script_include>
+</record_update>

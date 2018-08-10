@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="INSERT_OR_UPDATE">
+        <sp_dependency display_value="Driver.js">0e240a28db56db0095889eb5db961965</sp_dependency>
+        <sp_widget display_value="Gamification Event Listener">e9c0f590db5e9b0095889eb5db961975</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-22 17:41:56</sys_created_on>
+        <sys_id>8574c628db56db0095889eb5db961989</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GamificationDriver.Gamification Event Listener</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_8574c628db56db0095889eb5db961989</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-22 17:41:56</sys_updated_on>
+    </m2m_sp_widget_dependency>
+</record_update>

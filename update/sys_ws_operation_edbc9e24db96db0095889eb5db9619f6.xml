@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>PostTour</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+	var req = JSON.parse(request.body.dataString);
+	var activity = req.tour;
+	
+	if(activity) {
+		new x_nero_gamificati.GamificationAPI().trackRecordActivity(gs.getUserID(), activity);
+	} else {
+		gs.info('No activity');
+	}
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_nero_gamificati/gamificationguidedtour</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-22 19:29:14</sys_created_on>
+        <sys_id>edbc9e24db96db0095889eb5db9619f6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>PostTour</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sys_ws_operation_edbc9e24db96db0095889eb5db9619f6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-22 19:29:14</sys_updated_on>
+        <web_service_definition display_value="Gamification Guided Tour">157c1e24db96db0095889eb5db96193a</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

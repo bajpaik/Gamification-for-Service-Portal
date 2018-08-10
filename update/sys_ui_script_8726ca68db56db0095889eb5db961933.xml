@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_nero_gamificati.GamificationTourConfig</name>
+        <script><![CDATA[function startDriving(activity) {
+
+	var driver = new Driver({
+		onDeselected: function(Element) {
+			if(Element.node.id == 'xe4eebe64dbd6db0095889eb5db9619ea') {
+				completedTour(activity);
+			}
+		}
+	});
+	// Define the steps for introduction
+	driver.defineSteps([
+
+		{
+			element: '.gamehelp',
+			popover: {
+				title: 'Welcome',
+				description: 'Let me show you around. Here you will find some quick installation instructions',
+				position: 'bottom'
+			}
+		},
+		{
+			element: '#xa85f6110db5e9b0095889eb5db961971',
+			popover: {
+				title: 'User Points &amp; Badges',
+				description: 'Here you will find the User Points &amp; Badges widget',
+				position: 'bottom'
+			}
+		},
+		{
+			element: '#xe4eebe64dbd6db0095889eb5db9619ea',
+			popover: {
+				title: 'NewRocket, Inc.',
+				description: 'This is the cool company that developed this application for your enjoyment!',
+				position: 'top'
+			}
+		}
+	]);
+	setTimeout(function() {
+		driver.start();
+	},500);
+
+}
+
+function completedTour(activity) {
+	var data = {
+		tour: activity
+	};
+	$.ajax({
+		type: 'POST',
+		url: '/api/x_nero_gamificati/gamificationguidedtour',
+		contentType: 'application/json',
+		data: JSON.stringify(data)
+	});
+}]]></script>
+        <script_name>GamificationTourConfig</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-22 17:49:57</sys_created_on>
+        <sys_id>8726ca68db56db0095889eb5db961933</sys_id>
+        <sys_mod_count>48</sys_mod_count>
+        <sys_name>x_nero_gamificati.GamificationTourConfig</sys_name>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sys_ui_script_8726ca68db56db0095889eb5db961933</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-23 02:40:07</sys_updated_on>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

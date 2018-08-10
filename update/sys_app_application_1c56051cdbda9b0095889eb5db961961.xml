@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_app_application">
+    <sys_app_application action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category display_value="Custom Applications">e0355b31ef303000a61d5a3615c0fb78</category>
+        <description/>
+        <device_type>browser</device_type>
+        <hint/>
+        <name>Gamification for Service Portal</name>
+        <order>100</order>
+        <roles>x_nero_gamificati.gamification</roles>
+        <sys_class_name>sys_app_application</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-21 18:31:59</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>1c56051cdbda9b0095889eb5db961961</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Gamification for Service Portal</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Gamification for Service Portal" source="x_nero_gamificati">35630d90db1257003e1ef2adbf961928</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sys_app_application_1c56051cdbda9b0095889eb5db961961</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-21 18:31:59</sys_updated_on>
+        <title>Gamification for Service Portal</title>
+        <view_name/>
+    </sys_app_application>
+</record_update>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>Badge</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>Badge</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Application File" name="Application File">41c81463db301300329ffe1ebf96193b</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>workhstayh</sys_created_by>
+        <sys_created_on>2018-08-10 10:08:28</sys_created_on>
+        <sys_id>22db989adb335300329ffe1ebf961945</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Badge</sys_name>
+        <sys_package display_value="Generic" source="x_80404_generic">0cbcea8fdb879300329ffe1ebf96192b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Gamification for Service Portal">35630d90db1257003e1ef2adbf961928</sys_scope>
+        <sys_update_name>sys_wizard_answer_22db989adb335300329ffe1ebf961945</sys_update_name>
+        <sys_updated_by>workhstayh</sys_updated_by>
+        <sys_updated_on>2018-08-10 10:08:28</sys_updated_on>
+        <table/>
+        <target_url>x_nero_gamificati_badge.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>
